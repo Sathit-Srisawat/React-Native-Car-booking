@@ -39,7 +39,7 @@ export default class Profile extends React.Component {
 
 
   DeleteQueue = () => {
-    fetch('http://172.18.132.198/FinalProject/Delete.php', {
+    fetch('http://172.18.132.253/FinalProject/Delete.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -60,7 +60,7 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 , backgroundColor : "#fff0f0"}}>
         <ScrollView>
           <View style={{ alignItems: 'center', marginTop: 50 }}>
             <Icon name="user-circle" size={80} color="#900" />
@@ -131,7 +131,7 @@ export default class Profile extends React.Component {
 
               <TextInput
                 style={{ marginTop: 20, marginLeft: 50, width: 250, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                placeholder='select queue'
+                placeholder=' select queue'
                 onChangeText={(queues) => this.setState({ queues })}
               />
 
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 15,
     elevation: 10,
-    shadowColor: "#000",
+    shadowColor: "#fbecec",
     shadowOffset: {
       width: 0,
       height: 7,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 15,
     elevation: 10,
-    shadowColor: "#000",
+    shadowColor: "#fbecec",
     shadowOffset: {
       width: 0,
       height: 7,

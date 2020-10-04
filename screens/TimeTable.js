@@ -21,7 +21,7 @@ export default class TimeTable extends React.Component {
   }
   
   insertQueue = () => {
-    fetch('http://172.18.132.198/FinalProject/insert.php', {
+    fetch('http://172.18.132.253/FinalProject/insert.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -51,14 +51,13 @@ export default class TimeTable extends React.Component {
                 Queue Table Today
               </Text>
             </View>
-            <ScrollView style={{ marginTop: 20 }}>
-              <View style={{ marginLeft: 20 }}>
-                <View>
-                  <Text>
-                    {'\t'}Time {'\t\t\t\t\t\t'} Queue
-                  </Text>
-                </View>
-                
+              <View style = {{marginTop : 10}}>
+                <Text>
+                  {'\t'}{'\t'}Time {'\t\t\t\t\t\t'} Queue
+                </Text>
+              </View>
+            <ScrollView style={{ marginTop: 20 ,marginBottom :20}}>
+              <View style={{ marginLeft: 20 }}>                
                 <FlatList
                   data={this.state.data}
                   keyExtractor={(item, index) => index.toString()}
@@ -79,7 +78,7 @@ export default class TimeTable extends React.Component {
 
             <View>
               <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 20 }}>
-                Table Time
+                Booking Queue
               </Text>
             </View>
 
@@ -87,22 +86,21 @@ export default class TimeTable extends React.Component {
               
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15}}
-                placeholder = 'Date'
+                placeholder = '     Select Date'
                 onChangeText={(date) => this.setState({date})}
               />
 
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15 , marginTop :
               10}}
-                placeholder = 'Time'
+                placeholder = '     Select Time'
                 onChangeText={(time) => this.setState({time})}
               />
             
             </View>
             <View style={{ marginTop: 15, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15, shadowColor: "#000", shadowOffset: { width: 0, height: 7, }, shadowOpacity: 0.41, shadowRadius: 9.11, }}>
               <Button
-                onPress={this.onPressLearnMore}
-                title='select time'
+                title='Booking'
                 onPress={this.insertQueue}
               />
             </View>

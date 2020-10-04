@@ -14,9 +14,11 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import CreateAccout from "./CreateAccout";
+
 
 Icon.loadFont();
-export default class Login extends React.Component {
+export default class Login extends React.Component  {
 
   state = {
     data: [],
@@ -112,7 +114,7 @@ export default class Login extends React.Component {
 
           <View>
             <Button style={{ fontSize: 2 }}
-              onPress={() => navigation.navigate('CreateAccout')}
+              onPress={() =>this.props.navigation.navigate('CreateAccout')}
               title='Create a new account'
             />
           </View>
