@@ -21,7 +21,7 @@ export default class TimeTable extends React.Component {
   }
   
   insertQueue = () => {
-    fetch('http://172.18.132.198/FinalProject/insert.php', {
+    fetch('http://172.18.132.253/FinalProject/insert.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -100,8 +100,7 @@ export default class TimeTable extends React.Component {
             </View>
             <View style={{ marginTop: 15, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15, shadowColor: "#000", shadowOffset: { width: 0, height: 7, }, shadowOpacity: 0.41, shadowRadius: 9.11, }}>
               <Button
-                onPress={this.onPressLearnMore}
-                title='Qooking'
+                title='Booking'
                 onPress={this.insertQueue}
               />
             </View>

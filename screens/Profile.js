@@ -39,7 +39,7 @@ export default class Profile extends React.Component {
 
 
   DeleteQueue = () => {
-    fetch('http://172.18.132.198/FinalProject/Delete.php', {
+    fetch('http://172.18.132.253/FinalProject/Delete.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

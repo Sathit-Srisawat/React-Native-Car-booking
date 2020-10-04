@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Button, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Button, TextInput, FlatList, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import Swiper from 'react-native-swiper'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,6 +20,26 @@ export default class Profile extends React.Component {
     this.fetchData();
   }
 
+  insertComment = () => {
+    fetch('http://172.18.132.253/FinalProject/insertComment.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        comments: this.state.comment,
+        names: this.state.name
+      }),
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   render() {
     return (
 
@@ -28,7 +48,7 @@ export default class Profile extends React.Component {
           <View style={styles.smCard}>
             <Text style={styles.text}><Icon name="location-arrow" size={20} color="#900" />   Walailak University</Text>
           </View>
-          
+
           <View style={styles.containers}>
             <View style={styles.cards}>
               <MapView
@@ -74,8 +94,8 @@ export default class Profile extends React.Component {
             </View>
           </View>
 
-
           <ScrollView horizontal={true} >
+
             <View style={styles.cardss}>
               <FlatList
                 data={this.state.data}
@@ -129,6 +149,32 @@ export default class Profile extends React.Component {
                 }
               />
             </View>
+
+            <View style={styles.cardss} >
+              <View style={{ alignItems: 'center', marginTop: 10 }}>
+                <Text>
+                  COMMENT
+                </Text>
+
+              </View>
+              <TextInput
+                style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
+                placeholder=' Add your comment'
+                onChangeText={(comment) => this.setState({ comment })}
+              />
+              <TextInput
+                style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
+                placeholder=' Add your name'
+                onChangeText={(name) => this.setState({ name })}
+              />
+
+              <View style={{ marginTop: 5, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
+                <Button
+                  title='submit'
+                  onPress={this.insertComment}
+                />
+              </View>
+            </View>
           </ScrollView>
 
           <View style={styles.cardd}>
@@ -136,23 +182,23 @@ export default class Profile extends React.Component {
               style={styles.wrapper}
               loop={true}
               autoplay={true}
-              style ={{borderRadius : 15}} >
+              style={{ borderRadius: 15 }} >
               <View style={styles.slide}>
-                <Image source={require('../img/1.jpg')} style = {styles.images} />
+                <Image source={require('../img/1.jpg')} style={styles.images} />
               </View>
 
               <View style={styles.slide}>
-                <Image source={require('../img/2.jpg')} style = {styles.images} />
+                <Image source={require('../img/2.jpg')} style={styles.images} />
               </View>
 
               <View style={styles.slide}>
-                <Image source={require('../img/3.jpg')} style = {styles.images} />
+                <Image source={require('../img/3.jpg')} style={styles.images} />
               </View>
 
               <View style={styles.slide}>
-                <Image source={require('../img/4.jpg')} style = {styles.images} />
+                <Image source={require('../img/4.jpg')} style={styles.images} />
               </View>
-              
+
             </Swiper>
           </View>
         </View>
@@ -173,7 +219,7 @@ const styles = StyleSheet.create({
 
   containers: {
     flexDirection: 'row',
-    paddingTop: 30,
+    paddingTop: 10,
     justifyContent: 'flex-start',
     padding: 20,
     alignItems: 'center'
@@ -229,7 +275,7 @@ const styles = StyleSheet.create({
     height: 160,
     marginLeft: 20,
     shadowColor: "#fbecec",
-    borderRadius : 15,
+    borderRadius: 15,
 
   },
 
