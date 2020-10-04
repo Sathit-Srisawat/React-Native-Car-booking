@@ -10,6 +10,7 @@ import ContactUs from "./screens/ContactUs";
 import TimeTable from "./screens/TimeTable";
 import Profile from "./screens/Profile";
 import Statistic from "./screens/Statistic";
+import RootScreen from "./screens/RootScreen";
 
 
 
@@ -47,6 +48,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      {/*<RootScreen/>*/}
       <Tab.Navigator
         screenOptions={screenOptions}
         tabBarOptions={{
