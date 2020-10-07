@@ -23,7 +23,7 @@ export default class TimeTable extends React.Component {
   }
 
   insertcontactus = () => {
-    fetch('http://172.18.132.198/FinalProject/insertContactus.php', {
+    fetch('http://172.16.30.93/FinalProject/insertContactus.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

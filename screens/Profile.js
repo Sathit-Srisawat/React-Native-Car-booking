@@ -12,11 +12,12 @@ import {
   TextInput,
   Alert
 } from 'react-native';
+
+import CountDown from 'react-native-countdown-component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //const Profile: () => React$Node = ({ route }) => 
 export default class Profile extends React.Component {
-
 
   state = {
     data: [],
@@ -39,7 +40,8 @@ export default class Profile extends React.Component {
 
 
   DeleteQueue = () => {
-    fetch('http://172.18.132.253/FinalProject/Delete.php', {
+
+    fetch('http://172.16.30.93/FinalProject/Delete.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -60,103 +62,128 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 , backgroundColor : "#fff0f0"}}>
-        <ScrollView>
-          <View style={{ alignItems: 'center', marginTop: 50 }}>
-            <Icon name="user-circle" size={80} color="#900" />
-          </View>
+      <View style={{ flex: 1, backgroundColor: "#fff0f0" }}>
+        <View style={styles.cardd}>
+          <ScrollView>
+            <View style={{ alignItems: 'center', marginTop: 20 }}>
+              <Icon name="user-circle" size={80} color="#900" />
+            </View>
 
-          <View style={{ marginTop: 10, alignItems: 'center', marginTop: 20 }}>
-            <FlatList
-              data={this.state.data}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) =>
-
-                <View style={{ marginTop: 15 }}>
-                  <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 25 }}>
-                    <Text style={{ color: '#000000' }}>{'\t'}{item.position} {'\t'}{item.firstname}{'\t'}{item.lastname}</Text>
-                  </Text>
-                </View>
-              }
-            />
-          </View>
-
-          <View style={styles.cards}>
-            <View style={{ marginTop: 50, marginLeft: 50, flexDirection: 'row' }}>
-              <Icon name="envelope-square" size={20} color="#900" />
+            <View style={{ alignItems: 'center', marginTop: 20 }}>
               <FlatList
                 data={this.state.data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) =>
 
-                  <View>
-                    <Text style={{ color: '#000000', fontSize: 15 }}>  E-mail :  {item.email}</Text>
+                  <View style={{ marginTop: 15 }}>
+                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 25 }}>
+                      <Text style={{ color: '#000000' }}>{'\t'}{item.position} {'\t'}{item.firstname}{'\t'}{item.lastname}</Text>
+                    </Text>
                   </View>
                 }
               />
             </View>
 
-            <View style={{ marginTop: 20, marginLeft: 50, flexDirection: 'row' }}>
-              <Icon name="phone" size={20} color="#900" />
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-                  <View>
-                    <Text style={{ color: '#000000', fontSize: 15 }}>  Phone :  {item.phone}</Text>
-                  </View>
-                }
-              />
-            </View>
-
-          </View>
-
-          <View style={styles.card}>
-            <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 15, fontWeight: "bold" }}>
-              Your Ticket
-          </Text>
-            <View style={{ marginTop: 3 }}>
-              <View style={styles.tiket}>
+            <View style={styles.cards}>
+              <View style={{ marginTop: 50, marginLeft: 50, flexDirection: 'row' }}>
+                <Icon name="envelope-square" size={20} color="#900" />
                 <FlatList
-                  data={this.state.datas}
+                  data={this.state.data}
                   keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item }) =>
-                    <View style={{ marginTop: 10, marginLeft: 35 }}>
-                      <Text style={{ color: '#000000', fontSize: 15 }}>time :  {item.time} date : {item.date}</Text>
+
+                    <View>
+                      <Text style={{ color: '#000000', fontSize: 15 }}>  E-mail :  {item.email}</Text>
                     </View>
                   }
                 />
-
               </View>
 
-              <TextInput
-                style={{ marginTop: 20, marginLeft: 50, width: 250, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                placeholder=' select queue'
-                onChangeText={(queues) => this.setState({ queues })}
-              />
-
-              <View style={{ marginTop: 15, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
-                <Button
-                  onPress={this.onPressLearnMore}
-                  title='select time'
-                  onPress={this.DeleteQueue}
+              <View style={{ marginTop: 20, marginLeft: 50, flexDirection: 'row' }}>
+                <Icon name="phone" size={20} color="#900" />
+                <FlatList
+                  data={this.state.data}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item }) =>
+                    <View>
+                      <Text style={{ color: '#000000', fontSize: 15 }}>  Phone :  {item.phone}</Text>
+                    </View>
+                  }
                 />
               </View>
 
             </View>
-          </View>
-        </ScrollView>
+
+            <View style={styles.card}>
+              <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 15, fontWeight: "bold" }}>
+                Your Ticket
+            </Text>
+              <View style={{ marginTop: 3 }}>
+                <View style={styles.tiket}>
+                  <FlatList
+                    data={this.state.datas}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) =>
+                      <View style={{ marginTop: 10, marginLeft: 35 }}>
+                        <Text style={{ color: '#000000', fontSize: 15 }}>time :  {item.time} date : {item.date}</Text>
+                      </View>
+                    }
+                  />
+
+                </View>
+
+                <TextInput
+                  style={{ marginTop: 20, marginLeft: 50, width: 250, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
+                  placeholder=' select queue'
+                  onChangeText={(queues) => this.setState({ queues })}
+                />
+
+                <View style={{ marginTop: 15, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
+                  <Button
+                    title='select time'
+                    onPress={this.DeleteQueue}
+                    
+                  />
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+          <FlatList
+              data={this.state.datas}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) =>
+              <View style={{ marginTop: 10, marginLeft: 35 }}>
+                {item.no != 15 ? <CountDown until={300} onFinish={() => alert('invalid')} size={15} /> : null}
+              </View>
+              }
+          />
+
+          {/*{item.no == 4 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}*/}
+          {/*<CountDown unti={300} onFinish={() => alert('invalid')} size={15} />*/}
+        </View>
       </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
+  cardd: {
+    flex: 1,
+    width: 390,
+    height: 300,
+    backgroundColor: '#ebd4d4',
+    marginTop: 40,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    borderRadius: 15,
+  },
+
   cards: {
     width: 350,
     height: 150,
     marginTop: 20,
-    marginLeft: 35,
+    marginLeft: 20,
     backgroundColor: "white",
     borderRadius: 15,
     elevation: 10,
@@ -174,7 +201,7 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350,
     marginTop: 20,
-    marginLeft: 35,
+    marginLeft: 20,
     backgroundColor: "white",
     borderRadius: 15,
     elevation: 10,

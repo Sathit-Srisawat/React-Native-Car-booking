@@ -1,82 +1,49 @@
-import React, { Component } from 'react'
-import { Text, View, Image, Dimensions } from 'react-native'
-import Swiper from 'react-native-swiper'
-const { width } = Dimensions.get('window')
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
 
-const styles = {
-  wrapper: {},
-  slide: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'transparent'
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold'
-  },
-  image: {
-    width,
-    flex: 1
-  },
-  paginationStyle: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10
-  },
-  paginationText: {
-    color: 'white',
-    fontSize: 20
+} from 'react-native';
+//import Constants from 'react-native-constants';
+
+import CountDown from 'react-native-countdown-component';
+
+export default class test5 extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { timer: 30 };
   }
-}
 
-const renderPagination = (index, total, context) => {
-  return (
-    <View style={styles.paginationStyle}>
-      <Text style={{ color: 'grey' }}>
-        <Text style={styles.paginationText}>{index + 1}</Text>/{total}
-      </Text>
-    </View>
-  )
-}
+  startTimer = () => {
+    this.clockCall = setInterval(() => {
+      this.decrementClock();
+    }, 1000);
+  }
 
-export default class extends Component {
+  decrementClock = () => {
+    if (this.state.timer === 0) clearInterval(this.clockCall)
+    this.setState((prevstate) => ({ timer: prevstate.timer - 1 }));
+  };
+
+  componentWillUnmount() {
+    clearInterval(this.clockCall);
+  }
+
   render() {
     return (
-      <Swiper
-        style={styles.wrapper}
-        renderPagination={renderPagination}
-        loop={false}
-      >
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>
-          }
-        >
-          <Image style={styles.image} source={require('../img/1.jpg')} />
-        </View>
-        <View
-          style={styles.slide}
-          title={<Text numberOfLines={1}>Big lie behind Nine’s new show</Text>}
-        >
-          <Image style={styles.image} source={require('../img/2.jpg')} />
-        </View>
-        <View
-          style={styles.slide}
-          title={<Text numberOfLines={1}>Why Stone split from Garfield</Text>}
-        >
-          <Image style={styles.image} source={require('../img/3.jpg')} />
-        </View>
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Learn from Kim K to land that job</Text>
-          }
-        >
-          <Image style={styles.image} source={require('../img/4.jpg')} />
-        </View>
-      </Swiper>
+      <View style={{ marginTop: 50 }}>
+        <button Onpress={this.startTimer}> Play </button>
+
+        <Text style={{ fontSize: 18, color: '#000' }}>
+          {this.state.timer === 0 ? 'Times Up!' : { this.state.timer }}
+        </Text> 
+      </View>
     )
   }
-}
+};
+
+

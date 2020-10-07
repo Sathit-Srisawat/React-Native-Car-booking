@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
   }
 
   insertComment = () => {
-    fetch('http://172.18.132.253/FinalProject/insertComment.php', {
+    fetch('http://172.16.30.93/FinalProject/insertComment.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
