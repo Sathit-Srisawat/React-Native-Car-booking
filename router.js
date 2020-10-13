@@ -81,6 +81,15 @@ app.get('/History', function (req, res) {
 });
 });
 
+app.get('/Countdown', function (req, res) {
+  connection.getConnection(function (err, connection) {
+  connection.query('SELECT * FROM Countdown', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results)
+  });
+});
+});
+
 app.listen(3001, () => {
  console.log('Go to http://localhost:3001/chart so you can see the data.');
 });
@@ -107,4 +116,7 @@ app.listen(3003, () => {
  });
  app.listen(3008, () => {
   console.log('Go to http://localhost:3008/History so you can see the data.');
+ });
+ app.listen(3009, () => {
+  console.log('Go to http://localhost:3009/Countdown so you can see the data.');
  });

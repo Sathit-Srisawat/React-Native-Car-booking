@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
   }
 
   insertComment = () => {
-    fetch('http://172.18.132.129/FinalProject/insertComment.php', {
+    fetch('http://172.19.172.123/FinalProject/insertComment.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -40,7 +40,7 @@ export default class Profile extends React.Component {
         console.error(error);
       });
   };
-  
+
   render() {
     return (
 
@@ -97,60 +97,29 @@ export default class Profile extends React.Component {
 
           <ScrollView horizontal={true} >
 
-            <View style={styles.cardss}>
+            <View >
               <FlatList
                 data={this.state.data}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) =>
-                  <View style={{ margin: 10 }}>
-                    {item.no == 1 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}
-                    {item.no == 1 ? <Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text> : null}
-
+                  <View style={styles.cardss}>
+                    {item.no == 1 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 2 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 3 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 4 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 5 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 6 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 7 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 8 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 9 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 10 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 11 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 12 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
+                    {item.no == 13 ? <View style={{ margin: 10 }}><Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}{'\n'}</Text><Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text></View> : null}
                   </View>
                 }
               />
             </View>
-
-            <View style={styles.cardss}>
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-                  <View style={{ margin: 10 }}>
-                    {item.no == 2 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}
-                    {item.no == 2 ? <Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text> : null}
-
-                  </View>
-                }
-              />
-            </View>
-
-            <View style={styles.cardss}>
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-                  <View style={{ margin: 10 }}>
-                    {item.no == 3 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}
-                    {item.no == 3 ? <Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text> : null}
-                  </View>
-                }
-              />
-            </View>
-
-            <View style={styles.cardss}>
-              <FlatList
-                data={this.state.data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) =>
-                  <View style={{ margin: 10 }}>
-                    {item.no == 4 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}
-                    {item.no == 4 ? <Text style={{ fontSize: 15, color: '#000000', marginTop: 10 }}>{'\t'}{item.title}</Text> : null}
-                  </View>
-                }
-              />
-            </View>
-
             <View style={styles.cardss} >
               <View style={{ alignItems: 'center', marginTop: 10 }}>
                 <Text>
@@ -158,17 +127,18 @@ export default class Profile extends React.Component {
                 </Text>
 
               </View>
-              <TextInput
-                style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                placeholder=' Add your comment'
-                onChangeText={(comment) => this.setState({ comment })}
-              />
-              <TextInput
-                style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
-                placeholder=' Add your name'
-                onChangeText={(name) => this.setState({ name })}
-              />
-
+              <View style ={{alignItems : 'center'}}>
+                <TextInput
+                  style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
+                  placeholder=' Add your comment'
+                  onChangeText={(comment) => this.setState({ comment })}
+                />
+                <TextInput
+                  style={{ marginTop: 10, marginLeft: 25, marginRight: 10, width: 200, height: 30, borderColor: 'gray', borderWidth: 1, borderRadius: 15 }}
+                  placeholder=' Add your name'
+                  onChangeText={(name) => this.setState({ name })}
+                />
+              </View>
               <View style={{ marginTop: 5, backgroundColor: "#f6f5f5", marginLeft: 50, marginRight: 50, borderRadius: 15 }}>
                 <Button
                   title='submit'
@@ -247,7 +217,7 @@ const styles = StyleSheet.create({
 
   cardss: {
     marginTop: 20,
-    width: 250,
+    width: 320,
     height: 150,
     marginLeft: 20,
     backgroundColor: "#fbecec",

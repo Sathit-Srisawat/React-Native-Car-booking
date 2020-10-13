@@ -10,12 +10,14 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-  Alert
+  Alert,
+  navigation
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CreateAccout from "./CreateAccout";
-
+import ForgotPassword from "./ForgotPassword";
+import App from "../App";
 
 Icon.loadFont();
 export default class Login extends React.Component  {
@@ -26,22 +28,11 @@ export default class Login extends React.Component  {
     password:'',
     semail: 'Satit.sr@mail.wu.ac.th',
     spassword: 'Sathit15190',
+    answer : 1
   }
-
-  fetchData = async () => {
-    const response = await fetch('http://localhost:3006/login'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
-    const testTable = await response.json();
-    this.setState({ data: testTable });
-  }
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  check(email, pass, semail, spassword) {
-    { email == semail && pass == spassword ? alert('complete') : alert('email: ' + email + ' password: ' + pass) }
-  } 
-
+  
   render() {
+    const { answer} = this.state
     return (
 
       <View style={{ flex: 1, backgroundColor: '#ecf0f1' }}>
@@ -92,7 +83,7 @@ export default class Login extends React.Component  {
 
         <View style={{ alignItems: 'flex-end', fontSize: 10, color: 'blue', marginTop: 30 }}>
           <Button
-            onPress={() => navigation.navigate('ForgetPassword')}
+            onPress={() => this.props.navigation.navigate('ForgotPassword')}
             title='Forgot password?'
           />
         </View>
@@ -100,7 +91,7 @@ export default class Login extends React.Component  {
         <View style={styles.containers}>
           <View style={styles.cards}>
 
-            <TouchableOpacity onPress={() => this.check(this.state.email, this.state.password ,this.state.semail, this.state.spassword )} >
+            <TouchableOpacity onPress={() => this.check(this.state.email, this.state.password ,this.state.semail, this.state.spassword )}>
               <Text style={{ paddingBottom: 25, textAlign: 'center' }}>Login</Text>
             </TouchableOpacity>
 
@@ -158,16 +149,3 @@ const styles = StyleSheet.create({
   },
 
 });
-
-/*<TouchableOpacity onPress={() => this.check(this.state.email, this.state.password)} >
-<Text style={{ paddingBottom: 25, textAlign: 'center' }}>Login</Text>
-</TouchableOpacity>
-
-
-        <View style={styles.containers}>
-          <View style={styles.cards}>
-            <TouchableOpacity onPress={() => this.check(this.state.email, this.state.password)} >
-              <Text style={{ paddingBottom: 25, textAlign: 'center' }}>Login</Text>
-            </TouchableOpacity>
-          </View>
-        </View>*/

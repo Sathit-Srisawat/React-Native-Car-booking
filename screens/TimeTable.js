@@ -21,7 +21,7 @@ export default class TimeTable extends React.Component {
   }
   
   insertQueue = () => {
-    fetch('http://172.16.30.93/FinalProject/insert.php', {
+    fetch('http://192.168.43.193/FinalProject/insert.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -21,7 +21,10 @@ export default class Profile extends React.Component {
 
   state = {
     data: [],
-    datas: []
+    datas: [],
+    datase:[],
+    status0 : 1,
+    status1 : 1
   }
 
   fetchData = async () => {
@@ -32,6 +35,10 @@ export default class Profile extends React.Component {
     const responses = await fetch('http://localhost:3001/ticket'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
     const testTables = await responses.json();
     this.setState({ datas: testTables });
+
+    const responsesd = await fetch('http://localhost:3001/Countdown'); //http://localhost:1348/testTabl //http://172.16.186.173:1348/testTabl
+    const Table = await responsesd.json();
+    this.setState({ datase: Table });
   }
 
   componentDidMount = () => {
@@ -41,7 +48,7 @@ export default class Profile extends React.Component {
 
   DeleteQueue = () => {
 
-    fetch('http://172.16.30.93/FinalProject/Delete.php', {
+    fetch('http://192.168.43.193/FinalProject/Delete.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -49,6 +56,7 @@ export default class Profile extends React.Component {
       },
       body: JSON.stringify({
         queue: this.state.queues,
+        status :this.state.status1
       }),
     })
       .then((response) => response.text())
@@ -59,6 +67,28 @@ export default class Profile extends React.Component {
         console.error(error);
       });
   };
+
+  Update = () => {
+
+    fetch('http://192.168.43.193/FinalProject/update.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        status :this.state.status0
+      }),
+    })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
 
   render() {
     return (
@@ -142,24 +172,23 @@ export default class Profile extends React.Component {
                   <Button
                     title='select time'
                     onPress={this.DeleteQueue}
-                    
+
                   />
                 </View>
               </View>
             </View>
           </ScrollView>
           <FlatList
-              data={this.state.datas}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) =>
-              <View style={{ marginTop: 10, marginLeft: 35 }}>
-                {item.no != 15 ? <CountDown until={300} onFinish={() => alert('invalid')} size={15} /> : null}
+            data={this.state.datase}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) =>
+              <View>
+                <View style={{ marginTop: 10, marginLeft: 35 }}>
+                  {item.logic == 1 ? <CountDown until={10} onFinish={() => Alert.alert('')} onFinish = {this.Update} size={15} /> :null}
+                </View>
               </View>
-              }
+            }
           />
-
-          {/*{item.no == 4 ? <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text> : null}*/}
-          {/*<CountDown unti={300} onFinish={() => alert('invalid')} size={15} />*/}
         </View>
       </View>
     );
